@@ -48,3 +48,5 @@ group :development do
   # gem "spring"
   gem 'bullet'
 end
+
+gem "devise"
