@@ -1,7 +1,64 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# Application seed data 
+
+users = User.create!([
+  {
+    name: 'Ben',
+    email: 'ben@gmail.com',
+    password: '123456'
+  },
+  {
+    name: 'Selma',
+    email: 'selma@gmail.com',
+    password: '123456'
+  },
+  {
+    name: 'Sirri',
+    email: 'sirri@gmail.com',
+    password: '123456'
+  },
+])
+
+cities = City.create!([
+  {
+    name: 'Nairobi',
+    description: 'Nairobi is the capital of Kenya and the largest city in the country.',
+    flag_icon: 'https:example.com',
+    user: users.first,
+  },
+  {
+    name: 'Kigali',
+    description: 'Kigali is the capital of Rwanda and the largest city in the country.',
+    flag_icon: 'https:example.com',
+    user: users.second,
+  },
+  {
+    name: 'Algiers',
+    description: 'Algiers is the capital of Algeria and the largest city in the country.',
+    flag_icon: 'https:example.com',
+    user: users.first,
+  }
+])
+
+cars = Car.create!([
+  {
+    model: 'Mercedes',
+    description: 'German car',
+    photo: 'https:example.com',
+    cost: 24,
+    city: cities.first,
+    user: users.first,
+  }
+])
+
+reservations = Reservation.create!([
+  {
+    user: users.first,
+    car: cars.first,
+    date: '2020-01-01',
+  }
+])
+
+p "Created #{User.count} users"
+p "Created #{City.count} cities"
+p "Created #{Car.count} cars"
+p "Created #{Reservation.count} reservations"
