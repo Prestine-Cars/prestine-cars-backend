@@ -112,9 +112,12 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
+    nokogiri (1.13.8-x64-mingw-ucrt)
+      racc (~> 1.4)
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     pg (1.4.3)
+    pg (1.4.3-x64-mingw-ucrt)
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -155,12 +158,15 @@ GEM
     timeout (0.3.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2022.2)
+      tzinfo (>= 1.0.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.6.0)
 
 PLATFORMS
+  x64-mingw-ucrt
   x86_64-linux
 
 DEPENDENCIES
