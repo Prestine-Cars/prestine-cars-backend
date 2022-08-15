@@ -54,7 +54,7 @@ reservations = Reservation.create!([
   {
     user: users.first,
     car: cars.first,
-    date: '2020-01-01',
+    date: Time.now.utc.to_date,
   }
 ])
 
