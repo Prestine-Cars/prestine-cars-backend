@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :cities
   has_many :cars
+  has_many :reservations
 
   validates :name, presence: true, length: { in: 3..20 }
   validates :email, presence: true, uniqueness: true
