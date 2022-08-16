@@ -6,8 +6,8 @@ class SessionsController < Devise::SessionsController
       render json: { data: { name: user.name, role: user.role } }
     else
       render json: {
-      message: 'user not found'
-    }, status: :unprocessable_entity
+        message: 'user not found'
+      }, status: :unprocessable_entity
     end
   end
 
