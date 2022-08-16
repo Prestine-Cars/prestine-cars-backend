@@ -2,15 +2,15 @@ class Api::ReservationsController < ApplicationController
   # before_action :authenticate_user!
   def index
     reservations = Reservation.where(user_id: current_user)
-    render json: rservations, status: 200
+    render json: reservations, status: 200
   end
 
   def create
-    reservations = Reservation.new(reservation_params)
+    reservation = Reservation.new(reservation_params)
     if reservation.save
       render json: reservation, status: 200
-    else 
-      render json: {errors: 'Your reservations did not create'}, status: :unprocessible_entity
+    else
+      render json: { errors: 'Your reservations did not create' }, status: :unprocessible_entity
     end
   end
 

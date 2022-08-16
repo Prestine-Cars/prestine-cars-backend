@@ -4,10 +4,10 @@ RSpec.describe Reservation, type: :model do
   describe 'validations' do
     let(:user) { User.create(name: 'Selma', email: 'selma@gmail.com', password: 'selma123456') }
     let(:car) do
-      Car.create(name: 'Test Car', description: 'Affortable car', city: 'Capital of Algeria',
-                    price: '1000' icon: 'photo.png')
+      Car.create(name: 'Test Car', description: 'Affortable car', city: 'Capital of Algeria', price: '1000',
+                 icon: 'photo.png')
     end
-    subject { described_class.new(date: '2020-9-8', city: 'Capital of Algeria', user: user, car: car) }
+    subject { described_class.new(date: '2020-9-8', city: 'Capital of Algeria', user:, car:) }
 
     it 'is valid with valid attributes' do
       expect(subject).to be_valid
