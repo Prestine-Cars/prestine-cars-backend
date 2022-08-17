@@ -6,12 +6,12 @@ Rails.application.routes.draw do
     }
  
   namespace :api do
-    resources :reservations
-    namespace :v1 do
-      resources :cities, only: [:index, :show, :create, :destroy]
+    namespace :v1 do   
+      resources :cities, only: [:index, :show, :create, :destroy] do
+        resources :cars, only: [:create, :destroy] do
+          resources :reservations, only: [:index, :create, :destroy]
+        end
+      end
     end
   end
-
-  resources :cars, only: [:index, :create, :destroy] 
-
 end

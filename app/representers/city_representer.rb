@@ -5,15 +5,15 @@ class CityRepresenter
 
   def as_json
     {
-      id: @city.id,
-      name: @city.name,
-      description: @city.description,
-      flag_icon: @city.flag_icon,
-      cars: @city.cars.map { |car| CarRepresenter.new(car).as_json }
+      id: city.id,
+      name: city.name,
+      description: city.description,
+      flag_icon: city.flag_icon,
+      cars: city.cars.map { |car| CarRepresenter.new(car).as_json }
     }
   end
 
   private
 
-  attr_reader :user
+  attr_reader :city
 end

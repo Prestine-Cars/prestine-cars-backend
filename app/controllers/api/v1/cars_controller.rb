@@ -1,19 +1,11 @@
-class CarsController < ApplicationController
+class::Api::V1::CarsController < ApplicationController
   before_action :authenticate_request!
-
-  # GET /cars
-  def index
-    @cars = Car.all
-
-    render json: @cars
-  end
 
   # POST /cars
   def create
     @car = Car.new(car_params)
     @car.user = @current_user
-    # @car.city = City.find(params[:city_id]) # will be uncommented when cities are implemented
-    @car.city = City.first # will be deleted later after merging with city controller
+    @car.city = City.find(params[:city_id])
     if @car.save
       render json: @car, status: :created
     else

@@ -25,8 +25,7 @@ class::Api::V1::CitiesController < ApplicationController
   def destroy
     city = City.find(params[:id])
     city.destroy!
-
-    head :no_content
+    render json: { message: 'City deleted' }, status: :ok
   end
 
   private

@@ -5,15 +5,16 @@ class CarRepresenter
 
   def as_json
     {
-      id: @car.id,
-      model: @car.model,
-      photo: @car.photo,
-      description: @car.description,
-      cost: @car.cost
+      id: car.id,
+      model: car.model,
+      photo: car.photo,
+      description: car.description,
+      cost: car.cost,
+      city: car.city.name
     }
   end
 
   private
 
-  attr_reader :user
+  attr_reader :car
 end
