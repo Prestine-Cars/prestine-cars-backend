@@ -4,4 +4,5 @@ Rails.application.routes.draw do
       registrations: :registrations,
       sessions: :sessions,
     }
+  resources :cars, only: [:index, :create, :destroy] 
 end
