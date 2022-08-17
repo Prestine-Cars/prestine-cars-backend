@@ -23,6 +23,13 @@ RSpec.describe 'Users', type: :request do
     }
   end
 
+  let(:invalid_login_attributes) do
+    {
+      email: 'benten@gmail.com',
+      password: '123456'
+    }
+  end
+
   describe 'POST /users' do
     context 'with valid attributes' do
       it 'authenticates the user' do
@@ -51,6 +58,12 @@ RSpec.describe 'Users', type: :request do
     context 'with valid sign in attributes' do
       it 'Signs in the user' do
         post '/users/sign_in', params: { session: valid_login_attributes }
+        expect(response).to have_http_status :unprocessable_entity
+      end
+    end
+    context 'with invalid sign in attributes' do
+      it 'Signs in the user' do
+        post '/users/sign_in', params: { session: invalid_login_attributes }
         expect(response).to have_http_status :unprocessable_entity
       end
     end
