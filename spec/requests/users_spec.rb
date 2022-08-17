@@ -26,7 +26,7 @@ RSpec.describe 'Users', type: :request do
   let(:invalid_login_attributes) do
     {
       email: 'benten@gmail.com',
-      password: '123456'
+      password: '123'
     }
   end
 
