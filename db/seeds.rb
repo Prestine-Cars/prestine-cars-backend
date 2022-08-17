@@ -48,6 +48,14 @@ cars = Car.create!([
     cost: 24,
     city: cities.first,
     user: users.first,
+  },
+  {
+    model: 'Toyota',
+    description: 'Japenese car',
+    photo: 'https:example.com',
+    cost: 10,
+    city: cities.first,
+    user: users.first,
   }
 ])
 
@@ -55,6 +63,11 @@ reservations = Reservation.create!([
   {
     user: users.first,
     car: cars.first,
+    date: Time.now.utc.to_date,
+  },
+  {
+    user: users.first,
+    car: cars.second,
     date: Time.now.utc.to_date,
   }
 ])
