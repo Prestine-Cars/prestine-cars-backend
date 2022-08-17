@@ -31,5 +31,15 @@ RSpec.describe 'Users', type: :request do
         )
       end
     end
+
+    context 'with invalid attributes' do
+      it 'renders an error message' do
+        post user_registration_path, params: { user: invalid_attributes  }
+        json_body = JSON.parse(response.body)
+
+        expect(response).to have_http_status :unprocessable_entity
+      end
+    end
+
   end
 end
