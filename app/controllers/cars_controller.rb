@@ -24,9 +24,9 @@ class CarsController < ApplicationController
   # DELETE /cars/1
   def destroy
     @car = Car.find(params[:id])
-    # if @car.reservations.present?
-    #     render json: { error: 'Cannot delete car with reservations' }, status: :conflict
-    if @car.destroy
+    if @car.reservations.present?
+      render json: { error: 'Cannot delete car with reservations' }, status: :conflict
+    elsif @car.destroy
       render json: { message: 'Car deleted' }, status: :ok
     else
       render json: @car.errors, status: :unprocessable_entity
