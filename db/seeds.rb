@@ -4,7 +4,7 @@ users = User.create!([
   {
     name: 'Ben',
     email: 'ben@gmail.com',
-    password: '123456'
+    password: '123456',
     role: "admin",
   },
   {

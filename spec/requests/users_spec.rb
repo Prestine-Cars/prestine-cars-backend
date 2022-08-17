@@ -1,24 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  describe 'GET /index' do
-    it 'returns http success' do
-      get '/users/index'
-      expect(response).to have_http_status(:success)
-    end
+  let(:valid_attributes) do
+    {
+      name: 'Benten',
+      email: 'ben@gmail.com',
+      password: '123456'
+    }
+  end
+  let(:invalid_attributes) do
+    {
+      name: 'Ben',
+      email: '',
+      password: '123456'
+    }
   end
 
-  describe 'GET /create' do
-    it 'returns http success' do
-      get '/users/create'
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET /show' do
-    it 'returns http success' do
-      get '/users/show'
-      expect(response).to have_http_status(:success)
+  describe 'POST /users' do
+    context 'with valid attributes' do
+      it 'authenticates the user' do
+        post user_registration_path, params: { user: valid_attributes  }
+        json_body = JSON.parse(response.body)
+        expect(response).to be_successful
+        expect(json_body).to match(
+          {
+            'id' => User.last.id,
+            'name' => 'Benten',
+            'token' => AuthenticationTokenService.call(User.last.id)
+          }
+        )
+      end
     end
   end
 end
