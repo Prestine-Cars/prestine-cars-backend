@@ -12,8 +12,8 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = @current_user
-    # @car.city = City.find(params[:city_id])
-    @car.city = City.first
+    # @car.city = City.find(params[:city_id]) # will be uncommented when cities are implemented
+    @car.city = City.first # will be deleted later after merging with city controller
     if @car.save
       render json: @car, status: :created
     else
