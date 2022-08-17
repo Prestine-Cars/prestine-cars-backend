@@ -1,4 +1,4 @@
-# Application seed data 
+# Application seed data
 
 users = User.create!([
   {
@@ -58,8 +58,3 @@ reservations = Reservation.create!([
     date: Time.now.utc.to_date,
   }
 ])
-
-p "Created #{User.count} users"
-p "Created #{City.count} cities"
-p "Created #{Car.count} cars"
-p "Created #{Reservation.count} reservations"

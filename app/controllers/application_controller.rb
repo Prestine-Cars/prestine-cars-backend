@@ -3,7 +3,6 @@ class ApplicationController < ActionController::API
 
   include Response
   include ExceptionHandler
-  rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
 
   def authenticate_request!
     return invalid_authentication if !payload || !AuthenticationTokenService.valid_payload(payload.first)
@@ -35,16 +34,4 @@ class ApplicationController < ActionController::API
   def invalid_authentication
     render json: { error: 'You will need to login first' }, status: :unauthorized
   end
-
-  # def authenticate_user!(_ = {})
-  #   render json: { error: 'You must be logged in' }, status: :unauthorized unless signed_in?
-  # end
-
-  # def current_user
-  #   @current_user ||= super || User.find(@current_user_id)
-  # end
-
-  # def signed_in?
-  #   @current_user_id.present?
-  # end
 end
