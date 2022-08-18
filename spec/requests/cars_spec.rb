@@ -49,7 +49,7 @@ RSpec.describe 'Cars', type: :request do
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested deal' do
+    it 'destroys the requested car' do
       car = Car.create!(valid_attributes)
       expect do
         delete "/api/v1/cities/#{city.id}/cars/#{car.id}", headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
