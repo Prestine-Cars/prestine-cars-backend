@@ -32,7 +32,7 @@ RSpec.describe 'Cars', type: :request do
     context 'with valid parameters' do
       it 'creates a new car' do
         expect do
-          post cars_path, params: { car: valid_attributes },
+          post "/api/v1/cities/#{city.id}/cars", params: { car: valid_attributes },
                           headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
         end.to change(Car, :count).by(1)
       end
@@ -41,7 +41,7 @@ RSpec.describe 'Cars', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new Car' do
         expect do
-          post cars_path, params: { car: invalid_attributes },
+          post "/api/v1/cities/#{city.id}/cars", params: { car: invalid_attributes },
                           headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
         end.to change(Car, :count).by(0)
       end
@@ -52,7 +52,7 @@ RSpec.describe 'Cars', type: :request do
     it 'destroys the requested deal' do
       car = Car.create!(valid_attributes)
       expect do
-        delete car_path(car.id), headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
+        delete "/api/v1/cities/#{city.id}/cars/#{car.id}", headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
       end.to change(Car, :count).by(-1)
     end
   end
