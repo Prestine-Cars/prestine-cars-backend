@@ -5,8 +5,7 @@ class UserRepresenter
 
   def as_json
     {
-      id: user.id,
-      name: user.name,
+      user: user,
       token: AuthenticationTokenService.call(user.id)
     }
   end
