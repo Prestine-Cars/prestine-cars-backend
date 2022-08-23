@@ -23,19 +23,19 @@ cities = City.create!([
   {
     name: 'Nairobi',
     description: 'Nairobi is the capital of Kenya and the largest city in the country.',
-    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661251766/Prestine%20Cars/kenya_kwjo7x.png',
+    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661257848/Prestine%20Cars/kenya-162332_p1mc5i.png',
     user: users.first,
   },
   {
     name: 'Kigali',
     description: 'Kigali is the capital of Rwanda and the largest city in the country.',
-    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661251853/Prestine%20Cars/icons8-rwanda-96_lsw6c7.png',
+    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661258811/Prestine%20Cars/rwanda-26944_wprn08.png',
     user: users.second,
   },
   {
     name: 'Algiers',
     description: 'Algiers is the capital of Algeria and the largest city in the country.',
-    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661251852/Prestine%20Cars/icons8-algeria-96_sumpqa.png',
+    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661258811/Prestine%20Cars/algeria-161961_vsxm3c.png',
     user: users.first,
   }
 ])
