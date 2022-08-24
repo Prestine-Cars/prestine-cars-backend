@@ -4,7 +4,7 @@ RSpec.describe 'Cars', type: :request do
   before do
     load 'db/seeds.rb'
     @user = User.first
-    @city= City.first
+    @city = City.first
   end
 
   let(:valid_attributes) do
@@ -34,7 +34,7 @@ RSpec.describe 'Cars', type: :request do
       it 'creates a new car' do
         expect do
           post api_v1_city_cars_path((@city)), params: { car: valid_attributes },
-                          headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
+                                               headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
         end.to change(Car, :count).by(1)
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe 'Cars', type: :request do
       it 'does not create a new Car' do
         expect do
           post api_v1_city_cars_path(@city), params: { car: invalid_attributes },
-                          headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
+                                             headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
         end.to change(Car, :count).by(0)
       end
     end
@@ -53,7 +53,8 @@ RSpec.describe 'Cars', type: :request do
     it 'destroys the requested deal' do
       @car = Car.create!(valid_attributes)
       expect do
-        delete api_v1_city_car_url(@city, @car), headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
+        delete api_v1_city_car_url(@city, @car),
+               headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
       end.to change(Car, :count).by(-1)
     end
   end

@@ -1,8 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'sessions', type: :request do
-
-   path '/users/sign_in' do
+  path '/users/sign_in' do
     post('sign-in') do
       tags 'Users'
       consumes 'application/json'
