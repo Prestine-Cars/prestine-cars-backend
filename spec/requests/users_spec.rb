@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 RSpec.describe 'Users', type: :request do
   let(:valid_attributes) do
