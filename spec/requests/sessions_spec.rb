@@ -2,11 +2,20 @@ require 'swagger_helper'
 
 RSpec.describe 'sessions', type: :request do
 
-  path '/users/sign_in' do
-
-    get('new session') do
+   path '/users/sign_in' do
+    post('sign-in') do
+      tags 'Users'
+      consumes 'application/json'
+      parameter name: :users, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string },
+          password: { type: :string }
+        },
+        required: %w[email password]
+      }
       response(200, 'successful') do
-
+        let(:user) { { email: 'ben@gmail.com', password: '123456' } }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -16,28 +25,8 @@ RSpec.describe 'sessions', type: :request do
         end
         run_test!
       end
-    end
 
-    post('create session') do
-      response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path '/users/sign_out' do
-
-    delete('delete session') do
-      response(200, 'successful') do
-
+      response(422, 'Incorrect email/password') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
