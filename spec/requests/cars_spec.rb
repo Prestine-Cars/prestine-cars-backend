@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Cars', type: :request do
-  # let(:user) { User.create!(name: 'Amira', email: 'amira@gmail.com', password: '123456') }
-  # let(:city) do
-  #   City.create!(name: 'Berlin', flag_icon: 'www.example/germany.png', description: 'City in Germany', user:)
-  # end
-
   before do
     load 'db/seeds.rb'
     @user = User.first

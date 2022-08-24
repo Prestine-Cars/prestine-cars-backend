@@ -53,4 +53,5 @@ end
 
 gem 'devise'
 gem 'jwt'
-gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
