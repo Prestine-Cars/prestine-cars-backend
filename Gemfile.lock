@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     bcrypt (3.1.18)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
@@ -98,6 +100,8 @@ GEM
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     jwt (2.4.1)
     loofah (2.18.0)
       crass (~> 1.0.2)
@@ -133,6 +137,7 @@ GEM
     orm_adapter (0.5.0)
     pg (1.4.3)
     pg (1.4.3-x64-mingw-ucrt)
+    public_suffix (5.0.0)
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -190,6 +195,19 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
+    rswag (2.5.1)
+      rswag-api (= 2.5.1)
+      rswag-specs (= 2.5.1)
+      rswag-ui (= 2.5.1)
+    rswag-api (2.5.1)
+      railties (>= 3.1, < 7.1)
+    rswag-specs (2.5.1)
+      activesupport (>= 3.1, < 7.1)
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.1)
+    rswag-ui (2.5.1)
+      actionpack (>= 3.1, < 7.1)
+      railties (>= 3.1, < 7.1)
     strscan (3.0.4)
     thor (1.2.1)
     timeout (0.3.0)
@@ -222,6 +240,8 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.3, >= 7.0.3.1)
   rspec-rails
+  rswag
+  rswag-specs
   tzinfo-data
 
 RUBY VERSION
