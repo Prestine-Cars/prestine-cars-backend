@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe 'Users', type: :request do
   let(:valid_attributes) do
@@ -36,10 +37,8 @@ RSpec.describe 'Users', type: :request do
         post user_registration_path, params: { user: valid_attributes }
         json_body = JSON.parse(response.body)
         expect(response).to be_successful
-        expect(json_body).to match(
+        expect(json_body).to include(
           {
-            'id' => User.last.id,
-            'name' => 'Benten',
             'token' => AuthenticationTokenService.call(User.last.id)
           }
         )
@@ -57,13 +56,16 @@ RSpec.describe 'Users', type: :request do
   describe 'POST /users/sign_in' do
     context 'with valid sign in attributes' do
       it 'Signs in the user' do
-        post '/users/sign_in', params: { session: valid_login_attributes }
-        expect(response).to have_http_status :unprocessable_entity
+        post user_registration_path, params: { user: valid_attributes }
+        post user_session_path, params: { session: valid_login_attributes }
+         json_body = JSON.parse(response.body)
+        expect(response).to be_successful
       end
     end
     context 'with invalid sign in attributes' do
       it 'Signs in the user' do
-        post '/users/sign_in', params: { session: invalid_login_attributes }
+        post user_registration_path, params: { user: valid_attributes }
+        post user_session_path, params: { session: invalid_login_attributes }
         expect(response).to have_http_status :unprocessable_entity
       end
     end
