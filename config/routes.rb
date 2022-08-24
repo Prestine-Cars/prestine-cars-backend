@@ -6,10 +6,11 @@ Rails.application.routes.draw do
     }
  
   namespace :api do
-    namespace :v1 do   
+    namespace :v1 do 
+      get 'reservations', to: 'reservations#index'
       resources :cities, only: [:index, :show, :create, :destroy] do
         resources :cars, only: [:create, :destroy] do
-          resources :reservations, only: [:index, :create, :destroy]
+          resources :reservations, only: [:create, :destroy]
         end
       end
     end
