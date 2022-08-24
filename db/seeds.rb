@@ -44,7 +44,7 @@ cars = Car.create!([
   {
     model: 'Mercedes',
     description: 'German car',
-    photo: 'https://res.cloudinary.com/optprime/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1661251946/Prestine%20Cars/martin-katler-y3neNkE6efI-unsplash_axq2kh.jpg',
+    photo: 'https://res.cloudinary.com/optprime/image/upload/v1661251946/Prestine%20Cars/martin-katler-y3neNkE6efI-unsplash_axq2kh.jpg',
     cost: 24,
     city: cities.first,
     user: users.first,
@@ -52,7 +52,7 @@ cars = Car.create!([
   {
     model: 'Toyota',
     description: 'Japenese car',
-    photo: 'https://res.cloudinary.com/optprime/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1661251944/Prestine%20Cars/bestami-sarikaya-DwNmXuRb1Tk-unsplash_bmjwtm.jpg',
+    photo: 'https://res.cloudinary.com/optprime/image/upload/v1661251944/Prestine%20Cars/bestami-sarikaya-DwNmXuRb1Tk-unsplash_bmjwtm.jpg',
     cost: 10,
     city: cities.first,
     user: users.first,
