@@ -1,14 +1,14 @@
 require 'swagger_helper'
-
 RSpec.describe 'api/v1/cars', type: :request do
-  path '/api/v1/cities/{city_id}/cars' do
-    # You'll want to customize the parameter types...
-    parameter name: 'city_id', in: :path, type: :string, description: 'city_id'
-
-    post('create car') do
-      response(200, 'successful') do
-        let(:city_id) { '123' }
-
+  path '/api/v1/cities/{city_id}/' do
+    parameter name: 'city_id', in: :path, type: :integer, description: 'City id'
+    get('List of cars of a particular city') do
+      tags 'City cars'
+      security [bearerAuth: {}]
+      response(200, 'Successful') do
+        let(:id) { '1' }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -18,19 +18,7 @@ RSpec.describe 'api/v1/cars', type: :request do
         end
         run_test!
       end
-    end
-  end
-
-  path '/api/v1/cities/{city_id}/cars/{id}' do
-    # You'll want to customize the parameter types...
-    parameter name: 'city_id', in: :path, type: :string, description: 'city_id'
-    parameter name: 'id', in: :path, type: :string, description: 'id'
-
-    delete('delete car') do
-      response(200, 'successful') do
-        let(:city_id) { '123' }
-        let(:id) { '123' }
-
+      response(401, 'Not authorized') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
