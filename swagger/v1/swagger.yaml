@@ -1,0 +1,293 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/cities/{city_id}/":
+    parameters:
+    - name: city_id
+      in: path
+      description: City id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: List of cars of a particular city
+      tags:
+      - City cars
+      security:
+      - bearerAuth: {}
+      responses:
+        '200':
+          description: Successful
+        '401':
+          description: Not authorized
+    post:
+      summary: add a car for a city
+      tags:
+      - City cars
+      security:
+      - bearerAuth: {}
+      parameters: []
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Not authorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                photo:
+                  type: string
+                description:
+                  type: string
+                cost:
+                  type: integer
+                user_id:
+                  type: integer
+                city_id:
+                  type: integer
+              required:
+              - model
+              - photo
+              - cost
+              - user_id
+              - city_id
+  "/api/v1/cities/{city_id}/cars{car_id}":
+    parameters:
+    - name: city_id
+      in: path
+      description: City id
+      required: true
+      schema:
+        type: integer
+    - name: car_id
+      in: path
+      description: Car id
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: delete car
+      tags:
+      - City cars
+      security:
+      - bearerAuth: {}
+      responses:
+        '204':
+          description: Car deleted
+        '409':
+          description: Cannot delete car with reservations
+        '401':
+          description: You will need to login first
+        '404':
+          description: Record not found
+  "/api/v1/cities":
+    get:
+      summary: list cities
+      tags:
+      - Cities
+      responses:
+        '200':
+          description: Successful
+    post:
+      summary: add a city
+      tags:
+      - City
+      security:
+      - bearerAuth: {}
+      parameters: []
+      responses:
+        '201':
+          description: Ok
+        '422':
+          description: Unprocessable Entity
+        '401':
+          description: Not authorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                flag_icon:
+                  type: string
+              required:
+              - name
+              - description
+              - flag_icon
+  "/api/v1/cities/{city_id}":
+    parameters:
+    - name: city_id
+      in: path
+      description: City id
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: delete a city
+      tags:
+      - Cities
+      security:
+      - bearerAuth: {}
+      responses:
+        '204':
+          description: City deleted
+        '401':
+          description: Not authorized
+        '404':
+          description: Record not found
+    get:
+      summary: get a city
+      tags:
+      - city_id
+      responses:
+        '200':
+          description: Successful
+        '401':
+          description: Not authorized
+        '404':
+          description: Record not found
+  "/api/v1/cities/{city_id}/cars/{car_id}/reservations":
+    parameters:
+    - name: city_id
+      in: path
+      description: city_id
+      required: true
+      schema:
+        type: string
+    - name: car_id
+      in: path
+      description: car_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list reservations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create reservation
+      responses:
+        '200':
+          description: successful
+  "/api/v1/cities/{city_id}/cars/{car_id}/reservations/{id}":
+    parameters:
+    - name: city_id
+      in: path
+      description: city_id
+      required: true
+      schema:
+        type: integer
+    - name: car_id
+      in: path
+      description: car_id
+      required: true
+      schema:
+        type: integer
+    - name: reservation_id
+      in: path
+      description: reservation_id
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: delete reservation
+      responses:
+        '200':
+          description: successful
+        '204':
+          description: Reservation canceled
+        '401':
+          description: You will need to login first
+        '404':
+          description: Record not found
+      tags:
+      - Reservations
+      security:
+      - bearerAuth: {}
+  api/v1/reservations:
+    get:
+      summary: list reservations
+      tags:
+      - Reservations
+      security:
+      - bearerAuth: {}
+      responses:
+        '200':
+          description: Successful
+        '401':
+          description: Not authorized
+  "/api/v1/cities/{city_id}/cars/{car_id}/reservations/":
+    post:
+      summary: create reservation
+      tags:
+      - Reservations
+      security:
+      - bearerAuth: {}
+      parameters: []
+      responses:
+        '201':
+          description: successful
+        '400':
+          description: Bad Request
+        '401':
+          description: Not authorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                car_id:
+                  type: integer
+                date:
+                  type: string
+              required:
+              - user_id
+              - car_id
+              - date
+  "/users/sign_in":
+    post:
+      summary: sign-in
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: Incorrect email/password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
