@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Cars', type: :request do
-  let(:user) { User.create!(name: 'Amira', email: 'amira@gmail.com', password: '123456') }
-  let(:city) do
-    City.create!(name: 'Berlin', flag_icon: 'www.example/germany.png', description: 'City in Germany', user:)
+  before do
+    load 'db/seeds.rb'
+    @user = User.first
+    @city = City.first
   end
 
   let(:valid_attributes) do
@@ -12,8 +13,8 @@ RSpec.describe 'Cars', type: :request do
       photo: 'www.example/mercedez.png',
       description: 'This a german car',
       cost: 100,
-      user_id: user.id,
-      city_id: city.id
+      user_id: @user.id,
+      city_id: @city.id
     }
   end
 
@@ -32,8 +33,8 @@ RSpec.describe 'Cars', type: :request do
     context 'with valid parameters' do
       it 'creates a new car' do
         expect do
-          post cars_path, params: { car: valid_attributes },
-                          headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
+          post api_v1_city_cars_path((@city)), params: { car: valid_attributes },
+                                               headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
         end.to change(Car, :count).by(1)
       end
     end
@@ -41,8 +42,8 @@ RSpec.describe 'Cars', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new Car' do
         expect do
-          post cars_path, params: { car: invalid_attributes },
-                          headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
+          post api_v1_city_cars_path(@city), params: { car: invalid_attributes },
+                                             headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
         end.to change(Car, :count).by(0)
       end
     end
@@ -50,9 +51,10 @@ RSpec.describe 'Cars', type: :request do
 
   describe 'DELETE /destroy' do
     it 'destroys the requested deal' do
-      car = Car.create!(valid_attributes)
+      @car = Car.create!(valid_attributes)
       expect do
-        delete car_path(car.id), headers: { 'Authorization' => AuthenticationTokenService.call(user.id) }
+        delete api_v1_city_car_url(@city, @car),
+               headers: { 'Authorization' => AuthenticationTokenService.call(@user.id) }
       end.to change(Car, :count).by(-1)
     end
   end
