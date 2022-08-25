@@ -1,5 +1,5 @@
 class::Api::V1::CitiesController < ApplicationController
-  before_action :authenticate_request!
+  before_action :authenticate_request!, except: [:index]
 
   def index
     cities = City.all
