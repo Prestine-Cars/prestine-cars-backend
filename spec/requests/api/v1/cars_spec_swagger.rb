@@ -35,23 +35,25 @@ RSpec.describe 'api/v1/cars', type: :request do
       consumes 'application/json'
       parameter name: :reservation, in: :body, schema: {
         type: :object,
-        properties: 
+        properties:
         {
-      model:  { type: :string },
-      photo:  { type: :string },
-      description:  { type: :string },
-      cost:  { type: :integer },
-      user_id:  { type: :integer },
-      city_id: { type: :integer }
-    },
+          model: { type: :string },
+          photo: { type: :string },
+          description: { type: :string },
+          cost: { type: :integer },
+          user_id: { type: :integer },
+          city_id: { type: :integer }
+        },
         required: %w[model photo cost user_id city_id]
       }
       response(201, 'Created') do
         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
-         let(:city) { { name: 'Berlin', flag_icon: 'www.example/germany.png', description: 'City in Germany' } }
-        let(:car){ { model: 'Mercedes', photo: 'www.example/mercedez.png', description: 'This a german car',
-                      cost: 100, user_id: 1, city_id: 1} }
+        let(:city) { { name: 'Berlin', flag_icon: 'www.example/germany.png', description: 'City in Germany' } }
+        let(:car) do
+          { model: 'Mercedes', photo: 'www.example/mercedez.png', description: 'This a german car',
+            cost: 100, user_id: 1, city_id: 1 }
+        end
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -64,9 +66,11 @@ RSpec.describe 'api/v1/cars', type: :request do
       response(400, 'Bad Request') do
         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
-         let(:city) { { name: 'Berlin', flag_icon: 'www.example/germany.png', description: 'City in Germany' } }
-        let(:car){ { photo: 'www.example/mercedez.png', description: 'This a german car',
-                      cost: 100, user_id: 1, city_id: 1} }
+        let(:city) { { name: 'Berlin', flag_icon: 'www.example/germany.png', description: 'City in Germany' } }
+        let(:car) do
+          { photo: 'www.example/mercedez.png', description: 'This a german car',
+            cost: 100, user_id: 1, city_id: 1 }
+        end
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -97,7 +101,7 @@ RSpec.describe 'api/v1/cars', type: :request do
       response(204, 'Car deleted') do
         let(:city_id) { '1' }
         let(:car_id) { '6' }
-         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         after do |example|
           example.metadata[:response][:content] = {
@@ -133,7 +137,7 @@ RSpec.describe 'api/v1/cars', type: :request do
       end
       response(404, 'Record not found') do
         let(:id) { '123' }
-         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         after do |example|
           example.metadata[:response][:content] = {
