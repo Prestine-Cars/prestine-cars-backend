@@ -62,7 +62,9 @@ RSpec.describe 'Cities', type: :request do
           'photo' => car.photo,
           'description' => car.description,
           'cost' => car.cost.to_s,
-          'city' => city.name
+          'city' => city.name,
+          'city_id' => city.id,
+          'reservations' => car.reservations.count
         }]
       )
     end
