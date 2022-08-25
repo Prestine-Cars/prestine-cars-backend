@@ -12,7 +12,7 @@ class CarRepresenter
       cost: car.cost,
       city: car.city.name,
       city_id: car.city.id,
-      car_id: car.id
+      reservations: car.reservations.count
     }
   end
 
