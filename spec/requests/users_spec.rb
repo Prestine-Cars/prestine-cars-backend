@@ -57,7 +57,6 @@ RSpec.describe 'Users', type: :request do
       it 'Signs in the user' do
         post user_registration_path, params: { user: valid_attributes }
         post user_session_path, params: { session: valid_login_attributes }
-        json_body = JSON.parse(response.body)
         expect(response).to be_successful
       end
     end

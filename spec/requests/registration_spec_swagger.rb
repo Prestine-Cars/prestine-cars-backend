@@ -25,6 +25,22 @@ RSpec.describe 'registration', type: :request do
         end
         run_test!
       end
+    end
+  end
+
+  path '/users' do
+    post('sign-up') do
+      tags 'Users'
+      consumes 'application/json'
+      parameter name: :users, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          email: { type: :string },
+          password: { type: :string }
+        },
+        required: %w[email password]
+      }
 
       response(422, 'Name/Email already exists') do
         after do |example|

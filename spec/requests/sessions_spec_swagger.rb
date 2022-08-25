@@ -24,6 +24,21 @@ RSpec.describe 'sessions', type: :request do
         end
         run_test!
       end
+    end
+  end
+
+  path '/users/sign_in' do
+    post('sign-in') do
+      tags 'Users'
+      consumes 'application/json'
+      parameter name: :users, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string },
+          password: { type: :string }
+        },
+        required: %w[email password]
+      }
 
       response(422, 'Incorrect email/password') do
         after do |example|
