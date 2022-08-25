@@ -22,10 +22,10 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'https://{heroku}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'prestine-cars-backend.herokuapp.com/'
             }
           }
         }

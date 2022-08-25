@@ -4,20 +4,20 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/cities/{city_id}/":
+  '/api/v1/cities/{city_id}/':
     parameters:
-    - name: city_id
-      in: path
-      description: City id
-      required: true
-      schema:
-        type: integer
+      - name: city_id
+        in: path
+        description: City id
+        required: true
+        schema:
+          type: integer
     get:
       summary: List of cars of a particular city
       tags:
-      - City cars
+        - City cars
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
       responses:
         '200':
           description: Successful
@@ -26,9 +26,9 @@ paths:
     post:
       summary: add a car for a city
       tags:
-      - City cars
+        - City cars
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
       parameters: []
       responses:
         '201':
@@ -56,31 +56,31 @@ paths:
                 city_id:
                   type: integer
               required:
-              - model
-              - photo
-              - cost
-              - user_id
-              - city_id
-  "/api/v1/cities/{city_id}/cars{car_id}":
+                - model
+                - photo
+                - cost
+                - user_id
+                - city_id
+  '/api/v1/cities/{city_id}/cars{car_id}':
     parameters:
-    - name: city_id
-      in: path
-      description: City id
-      required: true
-      schema:
-        type: integer
-    - name: car_id
-      in: path
-      description: Car id
-      required: true
-      schema:
-        type: integer
+      - name: city_id
+        in: path
+        description: City id
+        required: true
+        schema:
+          type: integer
+      - name: car_id
+        in: path
+        description: Car id
+        required: true
+        schema:
+          type: integer
     delete:
       summary: delete car
       tags:
-      - City cars
+        - City cars
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
       responses:
         '204':
           description: Car deleted
@@ -90,20 +90,20 @@ paths:
           description: You will need to login first
         '404':
           description: Record not found
-  "/api/v1/cities":
+  '/api/v1/cities':
     get:
       summary: list cities
       tags:
-      - Cities
+        - Cities
       responses:
         '200':
           description: Successful
     post:
       summary: add a city
       tags:
-      - City
+        - City
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
       parameters: []
       responses:
         '201':
@@ -125,23 +125,23 @@ paths:
                 flag_icon:
                   type: string
               required:
-              - name
-              - description
-              - flag_icon
-  "/api/v1/cities/{city_id}":
+                - name
+                - description
+                - flag_icon
+  '/api/v1/cities/{city_id}':
     parameters:
-    - name: city_id
-      in: path
-      description: City id
-      required: true
-      schema:
-        type: integer
+      - name: city_id
+        in: path
+        description: City id
+        required: true
+        schema:
+          type: integer
     delete:
       summary: delete a city
       tags:
-      - Cities
+        - Cities
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
       responses:
         '204':
           description: City deleted
@@ -152,7 +152,7 @@ paths:
     get:
       summary: get a city
       tags:
-      - city_id
+        - city_id
       responses:
         '200':
           description: Successful
@@ -160,20 +160,20 @@ paths:
           description: Not authorized
         '404':
           description: Record not found
-  "/api/v1/cities/{city_id}/cars/{car_id}/reservations":
+  '/api/v1/cities/{city_id}/cars/{car_id}/reservations':
     parameters:
-    - name: city_id
-      in: path
-      description: city_id
-      required: true
-      schema:
-        type: string
-    - name: car_id
-      in: path
-      description: car_id
-      required: true
-      schema:
-        type: string
+      - name: city_id
+        in: path
+        description: city_id
+        required: true
+        schema:
+          type: string
+      - name: car_id
+        in: path
+        description: car_id
+        required: true
+        schema:
+          type: string
     get:
       summary: list reservations
       responses:
@@ -184,26 +184,26 @@ paths:
       responses:
         '200':
           description: successful
-  "/api/v1/cities/{city_id}/cars/{car_id}/reservations/{id}":
+  '/api/v1/cities/{city_id}/cars/{car_id}/reservations/{id}':
     parameters:
-    - name: city_id
-      in: path
-      description: city_id
-      required: true
-      schema:
-        type: integer
-    - name: car_id
-      in: path
-      description: car_id
-      required: true
-      schema:
-        type: integer
-    - name: reservation_id
-      in: path
-      description: reservation_id
-      required: true
-      schema:
-        type: integer
+      - name: city_id
+        in: path
+        description: city_id
+        required: true
+        schema:
+          type: integer
+      - name: car_id
+        in: path
+        description: car_id
+        required: true
+        schema:
+          type: integer
+      - name: reservation_id
+        in: path
+        description: reservation_id
+        required: true
+        schema:
+          type: integer
     delete:
       summary: delete reservation
       responses:
@@ -216,28 +216,28 @@ paths:
         '404':
           description: Record not found
       tags:
-      - Reservations
+        - Reservations
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
   api/v1/reservations:
     get:
       summary: list reservations
       tags:
-      - Reservations
+        - Reservations
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
       responses:
         '200':
           description: Successful
         '401':
           description: Not authorized
-  "/api/v1/cities/{city_id}/cars/{car_id}/reservations/":
+  '/api/v1/cities/{city_id}/cars/{car_id}/reservations/':
     post:
       summary: create reservation
       tags:
-      - Reservations
+        - Reservations
       security:
-      - bearerAuth: {}
+        - bearerAuth: {}
       parameters: []
       responses:
         '201':
@@ -259,14 +259,14 @@ paths:
                 date:
                   type: string
               required:
-              - user_id
-              - car_id
-              - date
-  "/users/sign_in":
+                - user_id
+                - car_id
+                - date
+  '/users/sign_in':
     post:
       summary: sign-in
       tags:
-      - Users
+        - Users
       parameters: []
       responses:
         '200':
@@ -284,10 +284,23 @@ paths:
                 password:
                   type: string
               required:
-              - email
-              - password
+                - email
+                - password
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+  - url: https://{heroku}
+    variables:
+      heroku:
+        default: prestine-cars-backend.herokuapp.com/
+  - url: http://{localhost}
+    variables:
+      localhost:
+        default: localhost:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      in: header
+      name: Authorization
+security:
+  bearerAuth: []
