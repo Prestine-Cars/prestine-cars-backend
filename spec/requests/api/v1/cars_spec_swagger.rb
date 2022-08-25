@@ -88,4 +88,62 @@ RSpec.describe 'api/v1/cars', type: :request do
       end
     end
   end
+  path '/api/v1/cities/{city_id}/cars{car_id}' do
+    parameter name: 'city_id', in: :path, type: :integer, description: 'City id'
+    parameter name: 'car_id', in: :path, type: :integer, description: 'Car id'
+    delete('delete car') do
+      tags 'City cars'
+      security [bearerAuth: {}]
+      response(204, 'Car deleted') do
+        let(:city_id) { '1' }
+        let(:car_id) { '6' }
+         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+      response(409, 'Cannot delete car with reservations') do
+        let(:city_id) { '1' }
+        let(:car_id) { '1' }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+      response(401, 'You will need to login first') do
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+      response(404, 'Record not found') do
+        let(:id) { '123' }
+         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
+  end
 end
