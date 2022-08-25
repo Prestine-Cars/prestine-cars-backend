@@ -32,7 +32,7 @@ RSpec.describe 'api/v1/reservations', type: :request do
   end
 
   path '/api/v1/cities/{city_id}/cars/{car_id}/reservations/' do
-        post('create reservation') do
+    post('create reservation') do
       tags 'Reservations'
       security [bearerAuth: {}]
       consumes 'application/json'
@@ -96,7 +96,7 @@ RSpec.describe 'api/v1/reservations', type: :request do
       security [bearerAuth: {}]
       response(204, 'Reservation canceled') do
         let(:id) { '1' }
-         let(:user) { { name: 'Ben', email: 'mailto:ben@gmail.com', password: '123456' } }
+        let(:user) { { name: 'Ben', email: 'mailto:ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         after do |example|
           example.metadata[:response][:content] = {
@@ -121,7 +121,7 @@ RSpec.describe 'api/v1/reservations', type: :request do
 
       response(404, 'Record not found') do
         let(:id) { '123' }
-         let(:user) { { name: 'Ben', email: 'mailto:ben@gmail.com', password: '123456' } }
+        let(:user) { { name: 'Ben', email: 'mailto:ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         after do |example|
           example.metadata[:response][:content] = {
