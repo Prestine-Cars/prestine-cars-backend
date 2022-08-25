@@ -10,7 +10,9 @@ class CarRepresenter
       photo: car.photo,
       description: car.description,
       cost: car.cost,
-      city: car.city.name
+      city: car.city.name,
+      city_id: car.city.id,
+      reservations: car.reservations.count
     }
   end
 
