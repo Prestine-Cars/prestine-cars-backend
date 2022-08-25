@@ -43,10 +43,10 @@ RSpec.describe 'api/v1/cities', type: :request do
         run_test!
       end
 
-      response(422, "Unprocessable Entity") do
+      response(422, 'Unprocessable Entity') do
         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
-        let(:city) { { name: 'Berlin', flag_icon: 'www.example/germany.png'} }
+        let(:city) { { name: 'Berlin', flag_icon: 'www.example/germany.png' } }
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -76,7 +76,7 @@ RSpec.describe 'api/v1/cities', type: :request do
       tags 'Cities'
       security [bearerAuth: {}]
       response(204, 'City deleted') do
-       let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         let(:city_id) { '1' }
         after do |example|
@@ -102,7 +102,7 @@ RSpec.describe 'api/v1/cities', type: :request do
 
       response(404, 'Record not found') do
         let(:city_id) { '10' }
-       let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         after do |example|
           example.metadata[:response][:content] = {
@@ -122,7 +122,7 @@ RSpec.describe 'api/v1/cities', type: :request do
     get('get a city') do
       tags 'city_id'
       response(200, 'Successful') do
-         let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         let(:city_id) { '1' }
         after do |example|
@@ -147,8 +147,8 @@ RSpec.describe 'api/v1/cities', type: :request do
       end
 
       response(404, 'Record not found') do
-       let(:city_id) { '10' }
-       let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
+        let(:city_id) { '10' }
+        let(:user) { { name: 'Ben', email: 'ben@gmail.com', password: '123456' } }
         let(:Authorization) { "Bearer #{AuthenticationTokenService.call(user.id)}" }
         after do |example|
           example.metadata[:response][:content] = {
