@@ -1,7 +1,7 @@
 class::Api::V1::ReservationsController < ApplicationController
   before_action :authenticate_request!
   def index
-    reservations = Reservation.where(user_id: @current_user)
+    reservations = Reservation.includes(car: [:city]).where(user_id: @current_user)
     render json: ReservationRepresenter.new(reservations).as_json, status: :ok
   end
 
