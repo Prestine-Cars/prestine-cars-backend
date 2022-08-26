@@ -15,7 +15,8 @@
 ## Kanban board
 
 - [Link to the Kanban board](https://github.com/orgs/Prestine-Cars/projects/1/views/1)
-- [Initial Kanban board screenshot]()
+- [Initial Kanban board screenshot]()![project_start](https://user-images.githubusercontent.com/2597305/186843136-4aa116ec-e828-4636-89a0-28719b890464.png)
+
 - [Final Kanban board screenshot]()
 - [Our team consist of 4 members](#authors)
 
