@@ -1,7 +1,73 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# Application seed data
+
+users = User.create!([
+  {
+    name: 'Benten',
+    email: 'benten@gmail.com',
+    password: '123456',
+    role: "admin",
+  },
+  {
+    name: 'Selma',
+    email: 'selma@gmail.com',
+    password: '123456'
+  },
+  {
+    name: 'Sirri',
+    email: 'sirri@gmail.com',
+    password: '123456'
+  },
+])
+
+cities = City.create!([
+  {
+    name: 'Nairobi',
+    description: 'Nairobi is the capital of Kenya and the largest city in the country.',
+    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661257848/Prestine%20Cars/kenya-162332_p1mc5i.png',
+    user: users.first,
+  },
+  {
+    name: 'Kigali',
+    description: 'Kigali is the capital of Rwanda and the largest city in the country.',
+    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661258811/Prestine%20Cars/rwanda-26944_wprn08.png',
+    user: users.second,
+  },
+  {
+    name: 'Algiers',
+    description: 'Algiers is the capital of Algeria and the largest city in the country.',
+    flag_icon: 'https://res.cloudinary.com/optprime/image/upload/v1661258811/Prestine%20Cars/algeria-161961_vsxm3c.png',
+    user: users.first,
+  }
+])
+
+cars = Car.create!([
+  {
+    model: 'Mercedes',
+    description: 'German car',
+    photo: 'https://res.cloudinary.com/optprime/image/upload/v1661251946/Prestine%20Cars/martin-katler-y3neNkE6efI-unsplash_axq2kh.jpg',
+    cost: 24,
+    city: cities.first,
+    user: users.first,
+  },
+  {
+    model: 'Toyota',
+    description: 'Japenese car',
+    photo: 'https://res.cloudinary.com/optprime/image/upload/v1661251944/Prestine%20Cars/bestami-sarikaya-DwNmXuRb1Tk-unsplash_bmjwtm.jpg',
+    cost: 10,
+    city: cities.first,
+    user: users.first,
+  }
+])
+
+reservations = Reservation.create!([
+  {
+    user: users.first,
+    car: cars.first,
+    date: Time.now.utc.to_date,
+  },
+  {
+    user: users.first,
+    car: cars.second,
+    date: Time.now.utc.to_date,
+  }
+])
